@@ -1,0 +1,4 @@
+local:
+	minikube start
+
+	
