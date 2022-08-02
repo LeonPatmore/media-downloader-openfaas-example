@@ -1,3 +1,6 @@
+password=RS6y45UvElmF
+gateway=http://localhost:64126
+
 local:
 	minikube start
 	kubectl apply -f https://raw.githubusercontent.com/openfaas/faas-netes/master/namespaces.yml
@@ -6,4 +9,11 @@ local:
 	helm upgrade openfaas --install openfaas/openfaas --namespace openfaas --set functionNamespace=openfaas-fn --set generateBasicAuth=true
 
 build:
-	./faas-cli.exe build -f examples/python/config.yml 
+	eval $$(minikube docker-env). 
+	./faas-cli.exe build --tag=sha -f examples/python/config.yml
+
+login:
+	./faas-cli.exe login --password ${password} --gateway ${gateway} 
+
+deploy: login build
+	./faas-cli.exe deploy --tag=sha -f examples/python/config.yml --gateway ${gateway}
