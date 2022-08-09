@@ -7,3 +7,6 @@ functions:
     lang: python3
     handler: ./
     image: hello-python
+    environment:
+      write_debug: true
+      combine_output: false
