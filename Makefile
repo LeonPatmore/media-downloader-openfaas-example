@@ -6,11 +6,12 @@ local:
 	kubectl apply -f https://raw.githubusercontent.com/openfaas/faas-netes/master/namespaces.yml
 	helm repo add openfaas https://openfaas.github.io/faas-netes/
 	helm repo update
-	helm upgrade openfaas --install openfaas/openfaas --namespace openfaas --set functionNamespace=openfaas-fn --set generateBasicAuth=true
+	helm upgrade openfaas --install openfaas/openfaas --namespace openfaas --set functionNamespace=openfaas-fn --set generateBasicAuth=true --set image_pull_policy=IfNotPresent
 
 build:
 	eval $$(minikube docker-env). 
 	cd examples/python && ../../faas-cli.exe build --tag=sha -f config.yml
+	minikube image load hello-python:latest-`git rev-parse --short HEAD`
 
 login:
 	./faas-cli.exe login --password ${password} --gateway ${gateway} 

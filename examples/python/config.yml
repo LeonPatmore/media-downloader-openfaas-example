@@ -4,6 +4,6 @@ provider:
 
 functions:
   hello-python:
-    lang: python
+    lang: python3
     handler: ./
     image: hello-python
