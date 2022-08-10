@@ -9,6 +9,8 @@ local:
 	helm upgrade openfaas --install openfaas/openfaas --namespace openfaas --set functionNamespace=openfaas-fn --set generateBasicAuth=true --set image_pull_policy=IfNotPresent
 
 build:
+	cd examples/python && ../../faas-cli template pull https://github.com/openfaas-incubator/python-flask-template
+	cd examples/python && ../../faas-cli template store pull python3-http
 	eval $$(minikube docker-env). 
 	cd examples/python && ../../faas-cli.exe build --tag=sha -f config.yml
 	minikube image load hello-python:latest-`git rev-parse --short HEAD`
