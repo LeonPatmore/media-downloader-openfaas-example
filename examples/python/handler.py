@@ -11,11 +11,8 @@ def handle(req):
     # s3_client.upload_file(file_name, bucket, object_name)
 
     logging.info("Hello! You said: " + req)
+    os.environ["content_type"] = "application/json"
 
     return {
         "id": "abc123"
     }
-
-
-def _response():
-    os.environ["content_type"] = "application/json"
