@@ -20,8 +20,8 @@ login:
 
 deploy: login build
 	cd examples/python && ../../faas-cli.exe deploy --tag=sha -f config.yml --gateway ${gateway}
-	sleep 5s
-	kubectl patch deployment -n openfaas-fn hello-python --type=json -p='[{"op":"replace","path":"/spec/template/spec/containers/0/imagePullPolicy","value":"IfNotPresent"}]'
+	# sleep 5s
+	# kubectl patch deployment -n openfaas-fn hello-python --type=json -p='[{"op":"replace","path":"/spec/template/spec/containers/0/imagePullPolicy","value":"IfNotPresent"}]'
 
 reset:
 	rm -Rf examples/python/build
