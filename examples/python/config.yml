@@ -10,3 +10,5 @@ functions:
     environment:
       write_debug: true
       combine_output: false
+    secrets:
+      - aws

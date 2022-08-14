@@ -1,5 +1,11 @@
 # Media Downloader Openfaas Example
 
+## Requirements
+
+- kubectl
+- minikube
+- base64
+
 ## OpenFaas
 
 https://github.com/openfaas/faas-netes/blob/master/chart/openfaas/README.md
@@ -13,6 +19,17 @@ Port forward the `gateway-external` service.
 Since the stdout of functions is piped into the http response, we can not use std out for logging.
 
 Setting `combine_output: false` allows you to log to stderr.
+
+### Secrets
+
+Secrets use K8s secrets.
+
+This is automated via the `Makefile`. Please ensure you have a `.env. file in the root of the project with the following:
+
+```
+export AWS_ACCESS_KEY_ID="my-id"
+export AWS_SECRET_ACCESS_KEY="my-secret-key"
+```
 
 ### Limitations
 

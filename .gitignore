@@ -1,3 +1,5 @@
 **/template/**
 **/build/**
 **/.idea/**
+examples/secrets.yml
+.env
