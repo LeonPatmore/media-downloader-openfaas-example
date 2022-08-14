@@ -1,0 +1,3 @@
+- fix newline bug with secrets.
+- implement s3 upload in handler.
+- add tests.
