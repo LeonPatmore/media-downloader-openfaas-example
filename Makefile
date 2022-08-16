@@ -6,8 +6,8 @@ include .env
 generate-secrets-yml:
 	echo ${AWS_ACCESS_KEY_ID}
 	echo ${AWS_SECRET_ACCESS_KEY}
-	export AWS_ACCESS_KEY_ID_ENCODED=`echo ${AWS_ACCESS_KEY_ID} | base64` && \
-	export AWS_SECRET_ACCESS_KEY_ENCODED=`echo ${AWS_SECRET_ACCESS_KEY} | base64` && \
+	export AWS_ACCESS_KEY_ID_ENCODED=`echo -n ${AWS_ACCESS_KEY_ID} | base64` && \
+	export AWS_SECRET_ACCESS_KEY_ENCODED=`echo -n ${AWS_SECRET_ACCESS_KEY} | base64` && \
 	cat examples/secrets-template.yml | envsubst > examples/secrets.yml
 
 local: generate-secrets-yml
