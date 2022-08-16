@@ -5,6 +5,7 @@ import os
 import boto3
 
 from .secrets import get_secret
+from flask import request
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -30,7 +31,10 @@ def handle(event, context):
     with open('/var/openfaas/secrets/accessKeyId', 'rb') as data:
         s3_client.upload_fileobj(data, BUCKET_NAME, 'example')
 
-    logging.info(json.dumps(event.body))
+
+    request.form.to_dict(flat=False)
+
+    logging.info(event.body)
     logging.info(json.dumps(event.headers))
     logging.info(json.dumps(event.method))
     logging.info(json.dumps(event.query))
