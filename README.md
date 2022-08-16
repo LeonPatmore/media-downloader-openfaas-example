@@ -29,6 +29,7 @@ This is automated via the `Makefile`. Please ensure you have a `.env. file in th
 ```
 export AWS_ACCESS_KEY_ID="my-id"
 export AWS_SECRET_ACCESS_KEY="my-secret-key"
+export BUCKET_NAME="media-upload-leonpatmore"
 ```
 
 ### Limitations
