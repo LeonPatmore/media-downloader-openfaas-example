@@ -3,6 +3,13 @@ import os
 
 import boto3
 
+from secrets import get_secret
+
+access_key_id = get_secret("accessKeyId")
+secretAccessKey = get_secret("secretAccessKey")
+
+logging.info(f"AWS access key is {access_key_id}")
+
 s3_client = boto3.client('s3')
 logging.basicConfig(level=logging.DEBUG)
 
