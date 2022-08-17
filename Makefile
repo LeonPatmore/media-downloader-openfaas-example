@@ -1,5 +1,5 @@
 password=RS6y45UvElmF
-gateway=http://localhost:64126
+gateway=http://localhost:56573
 
 include .env
 
@@ -35,3 +35,7 @@ deploy: login build
 
 reset:
 	rm -Rf examples/python/build
+
+test:
+	cd examples/python && pipenv install --dev
+	cd examples/python && pipenv run python -m pytest handler_test.py

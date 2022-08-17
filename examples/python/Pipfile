@@ -1,0 +1,7 @@
+[dev-packages]
+flask = "*"
+pytest = "*"
+boto3 = "*"
+
+[requires]
+python_version = "3.7"

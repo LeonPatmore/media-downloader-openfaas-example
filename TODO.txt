@@ -1,2 +1,3 @@
 - implement s3 upload in handler.
 - add tests.
+- find a way to get around flask bug with file.

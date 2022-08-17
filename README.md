@@ -2,6 +2,8 @@
 
 ## Requirements
 
+- python3.7 (for local testing), install using pyenv
+- pipenv
 - kubectl
 - minikube
 - base64
