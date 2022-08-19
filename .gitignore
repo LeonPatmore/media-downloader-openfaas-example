@@ -4,3 +4,4 @@
 examples/secrets.yml
 .env
 **/__pycache__/**
+faas-cli.exe

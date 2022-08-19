@@ -8,6 +8,10 @@
 - minikube
 - base64
 
+## Running Tests
+
+`make test`
+
 ## OpenFaas
 
 https://github.com/openfaas/faas-netes/blob/master/chart/openfaas/README.md
