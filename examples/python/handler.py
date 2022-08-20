@@ -1,13 +1,21 @@
 import json
 
 from flask import request
+from werkzeug.datastructures import FileStorage
 
+from .configuration import S3_CLIENT, BUCKET_NAME
 from .logger import logger
 
 
+def _upload_file(file: FileStorage):
+    logger.info(f"Uploading file {file.filename}")
+    S3_CLIENT.upload_fileobj(file, BUCKET_NAME, file.filename)
+
+
 def handle(event, context):
-    # with open('/var/openfaas/secrets/accessKeyId', 'rb') as data:
-    #     s3_client.upload_fileobj(data, BUCKET_NAME, 'example')
+
+    for file in request.files.values():
+        _upload_file(file)
 
     data = request.form.to_dict()
     logger.info(json.dumps(data))
