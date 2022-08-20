@@ -1,6 +1,3 @@
-password=RS6y45UvElmF
-gateway=http://localhost:64126
-
 include .env
 
 generate-secrets-yml:
@@ -35,13 +32,13 @@ build: pre-build
 	minikube image load hello-python:latest-`git rev-parse --short HEAD`
 
 login:
-	./faas-cli.exe login --password ${password} --gateway ${gateway} 
+	./faas-cli.exe login --password ${OPENFAAS_PASSWORD} --gateway ${OPENFAAS_GATEWAY} 
 
 deploy: login build
-	cd examples/python && ../../faas-cli.exe deploy --tag=sha -f config.yml --gateway ${gateway}
+	cd examples/python && ../../faas-cli.exe deploy --tag=sha -f config.yml --gateway ${OPENFAAS_GATEWAY}
 
 deploy-local: login build-local 
-	cd examples/python && ../../faas-cli.exe deploy -f config-local.yml --gateway ${gateway}
+	cd examples/python && ../../faas-cli.exe deploy -f config-local.yml --gateway ${OPENFAAS_GATEWAY}
 
 reset:
 	rm -Rf examples/python/build

@@ -7,12 +7,21 @@
 - kubectl
 - minikube
 - base64
-
-## Running Tests
-
-`make test`
+- sed
 
 ## Local
+
+### Local Config
+
+This is automated via the `Makefile`. Please ensure you have a `.env. file in the root of the project with the following:
+
+```
+export AWS_ACCESS_KEY_ID="my-id"
+export AWS_SECRET_ACCESS_KEY="my-secret-key"
+export BUCKET_NAME="media-upload-leonpatmore"
+export OPENFAAS_PASSWORD="abc123"
+export OPENFAAS_GATEWAY="http://localhost:1234"
+```
 
 ### Build
 
@@ -21,6 +30,10 @@
 ### Deploy
 
 `make deploy-local tag=abc123`
+
+### Running Tests
+
+`make test`
 
 ## OpenFaas
 
@@ -39,14 +52,6 @@ Setting `combine_output: false` allows you to log to stderr.
 ### Secrets
 
 Secrets use K8s secrets.
-
-This is automated via the `Makefile`. Please ensure you have a `.env. file in the root of the project with the following:
-
-```
-export AWS_ACCESS_KEY_ID="my-id"
-export AWS_SECRET_ACCESS_KEY="my-secret-key"
-export BUCKET_NAME="media-upload-leonpatmore"
-```
 
 ### Limitations
 
