@@ -4,7 +4,7 @@
 # import flask
 # from werkzeug.datastructures import FileStorage
 #
-# from handler import handle
+from .handler import handle
 #
 # app = flask.Flask("test")
 #

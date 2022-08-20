@@ -2,7 +2,7 @@ import json
 
 from flask import request
 
-from logger import logger
+from .logger import logger
 
 
 def handle(event, context):
