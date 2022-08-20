@@ -1,5 +1,5 @@
 password=RS6y45UvElmF
-gateway=http://localhost:56573
+gateway=http://localhost:64126
 
 include .env
 
@@ -18,10 +18,19 @@ local: generate-secrets-yml
 	helm upgrade openfaas --install openfaas/openfaas --namespace openfaas --set functionNamespace=openfaas-fn --set generateBasicAuth=true --set image_pull_policy=IfNotPresent
 	kubectl apply -f examples/secrets.yml
 
-build:
+pre-build:
 	cd examples/python && ../../faas-cli template pull https://github.com/openfaas-incubator/python-flask-template
 	cd examples/python && ../../faas-cli template store pull python3-http
-	eval $$(minikube docker-env). 
+	eval $$(minikube docker-env).
+
+build-local: pre-build
+	cd examples/python && rm -f config-local.yml
+	cd examples/python && cp config.yml config-local.yml
+	cd examples/python && sed -i '9s/hello-python/hello-python:$(tag)/g' config-local.yml
+	cd examples/python && ../../faas-cli.exe build -f config-local.yml
+	minikube image load hello-python:$(tag)
+
+build: pre-build
 	cd examples/python && ../../faas-cli.exe build --tag=sha -f config.yml
 	minikube image load hello-python:latest-`git rev-parse --short HEAD`
 
@@ -30,8 +39,9 @@ login:
 
 deploy: login build
 	cd examples/python && ../../faas-cli.exe deploy --tag=sha -f config.yml --gateway ${gateway}
-	# sleep 5s
-	# kubectl patch deployment -n openfaas-fn hello-python --type=json -p='[{"op":"replace","path":"/spec/template/spec/containers/0/imagePullPolicy","value":"IfNotPresent"}]'
+
+deploy-local: login build-local 
+	cd examples/python && ../../faas-cli.exe deploy -f config-local.yml --gateway ${gateway}
 
 reset:
 	rm -Rf examples/python/build

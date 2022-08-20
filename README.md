@@ -12,6 +12,16 @@
 
 `make test`
 
+## Local
+
+### Build
+
+`make buid-local tag=abc123`
+
+### Deploy
+
+`make deploy-local tag=abc123`
+
 ## OpenFaas
 
 https://github.com/openfaas/faas-netes/blob/master/chart/openfaas/README.md
