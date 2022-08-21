@@ -1,4 +1,4 @@
-# Media Downloader Openfaas Example
+# media-uploader-openfaas
 
 ## Requirements
 
