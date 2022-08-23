@@ -1,8 +1,14 @@
 from flask import request
 from werkzeug.datastructures import FileStorage
 
-from .configuration import S3_CLIENT, BUCKET_NAME
-from .logger import logger
+try:
+    from configuration import S3_CLIENT, BUCKET_NAME
+except ModuleNotFoundError:
+    from .configuration import S3_CLIENT, BUCKET_NAME
+try:
+    from logger import logger
+except ModuleNotFoundError:
+    from .logger import logger
 
 
 def _upload_file(file: FileStorage) -> str:

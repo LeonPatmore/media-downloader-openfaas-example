@@ -1,4 +1,4 @@
 - implement s3 upload in handler. DONE
 - add tests. DONE
 - find a way to get around flask bug with file. DONE
-- dont use real aws for tests.
+- dont use real aws for tests. DONE
