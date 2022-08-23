@@ -13,7 +13,7 @@
 
 ### Local Config
 
-This is automated via the `Makefile`. Please ensure you have a `.env. file in the root of the project with the following:
+This is automated via the `Makefile`. Please ensure you have a `.env` file in the root of the project with the following:
 
 ```
 export AWS_ACCESS_KEY_ID="my-id"
