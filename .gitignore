@@ -1,7 +1,7 @@
 **/template/**
 **/build/**
 **/.idea/**
-examples/secrets.yml
+secrets.yml
 .env
 **/__pycache__/**
 faas-cli.exe
