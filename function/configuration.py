@@ -5,8 +5,8 @@ import boto3
 from .logger import logger
 from .secrets import get_secret
 
-access_key_id = get_secret("accessKeyId", "AWS_ACCESS_KEY_ID")
-secretAccessKey = get_secret("secretAccessKey", "AWS_SECRET_ACCESS_KEY")
+access_key_id = get_secret("accessKeyId")
+secretAccessKey = get_secret("secretAccessKey")
 logger.info(f"AWS access key is [ {access_key_id} ]")
 
 BUCKET_NAME = os.environ.get("BUCKET_NAME")
